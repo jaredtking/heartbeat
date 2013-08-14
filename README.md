@@ -9,9 +9,9 @@ In today's connected world, many systems, processes, and services run on one's b
 
 Enter Heartbeat.
 
-Heartbeat facilitates monitoring of metrics and generates alerts based on a flexible set of rules. Metrics are received over ordinary HTTP requests to the API.
+Heartbeat facilitates monitoring of metrics and generates alerts based on a flexible set of rules. Metrics are received over ordinary HTTP requests to the API and can be anything (pulse, string, number).
 
-One needs not think of systems as strictly software running on servers. A system may be something in the physical world. If it generates data then it can be monitored by Heartbeat. Please see the use cases for examples of how Heartbeat may be used.
+One needs not think of systems as strictly software running on servers. A system may be something in the physical world like a business. If it generates data then it can be monitored by Heartbeat. Please see the use cases for examples of how Heartbeat may be used.
 
 ## Goals
 
@@ -22,21 +22,27 @@ One needs not think of systems as strictly software running on servers. A system
 ## Use cases
 
 * Cron jobs and background services
+
 Verify that services are running by receiving alerts when something fails or does not execute. Pulses can be sent whenever a task has finished with a simple ``curl`` call to Heartbeat.
 
 * Usage metrics
+
 Store data as services are used or consumed. For example, store statistics about how a product or app gets used over time.
 
 * Business
+
 Monitor the health of your business with Heartbeat and be notified as soon as dips in traffic, signups, or revenue are detected.
 
 * Personal
+
 Track metrics about yourself, such as health and productivity.
 
 * Hardware
+
 With the internet of things it is now possible to communicate with circuits interfacing with real hardware, such as Raspberry Pi, from anywhere with an internet connection. Possibilities include notifications whenever a switch is triggered or a sensor exceeds a threshold.
 
 * Who knows?
+
 Almost any information can be tracked and logged. There are many, many other use cases where Heartbeat is useful, waiting to be discovered.
 
 ## Metrics
@@ -71,9 +77,13 @@ A metric may be any piece of text. If a metric contains at least one string then
 
 Rules define the criteria for which an alert will be generated.
 
+More detail coming soon...
+
 ## HTTP API
 
 Data is supplied to Heartbeat via an HTTP API. Every piece of data that comes in must have the name of a metric and a value. The timestamp assigned to the data will be the time the request comes in.
+
+More detail coming soon...
 
 ## Configuration
 
@@ -97,7 +107,7 @@ Alerts may be sent over e-mail with SMTP credentials. The SMTP settings may be s
 
 #### Twilio
 
-Heartbeat can be configured to send alerts via SMS if Twilio credentials are supplied in ``server.json``.
+Heartbeat can be configured to send alerts via SMS if [Twilio](http://twilio.com) credentials are supplied in ``server.json``.
 
 ## Usage
 
@@ -111,32 +121,32 @@ Creating a new Heartbeat server with a custom name:
 heartbeat new myHeartbeat
 ```
 
-A directory will be created with sample configuration files. At minimum, the database credentials must be provided.
+A directory with the server name will be created and filled with sample configuration files. At minimum, the database credentials must be supplied before firing up the server.
 
-The server can now be started with:
+The server can be started with:
 ```
 heartbeat start
 ```
 
 ## Privacy
 
-Since Heartbeat is self-hosted, you have complete control over your data. It is **highly recommended that TLS is used with Heartbeat** in order to ensure privacy since the API is plaintext.
+Since Heartbeat is self-hosted, you have complete control over your data. It is **highly recommended that TLS is used with Heartbeat** in order to ensure privacy since the API is plaintext over HTTP.
 
 ## Dude, where's my code?
 
-Following [Readme Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) by Tom Preston-Warner, the code will come in time. This document outlines what will be built and has been used to organize my thoughts. Eventually the code will follow. As the code appears, this document will be updated.
+I have chosen to follow [Readme Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) by Tom Preston-Warner for this project, meaning that the code will come in time. This document outlines what will be built and has been used to organize my thoughts. As the code and new thoughts appear, this document will be updated.
 
 ### What's next?
 
-- [ ] Design REST API
-- [ ] Define alert rule parameters
-- [ ] Setup tests for prototype functionality (track metrics, simple rule set, e-mail + sms alerts)
-- [ ] CLI interface
-- [ ] Configuration files (create and parse)
-- [ ] Scheduler based on rules
-- [ ] Build API endpoints for receiving data
-- [ ] Send alerts
-- [ ] Web app dashboard
+- Design REST API
+- Define alert rule parameters
+- Setup tests for prototype functionality (track metrics, simple rule set, e-mail + sms alerts)
+- CLI interface
+- Configuration files (create and parse)
+- Scheduler based on rules
+- Build API endpoints for receiving data
+- Send alerts
+- Web app dashboard
 
 ## License
 
