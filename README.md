@@ -7,7 +7,7 @@ Server for monitoring your life
 
 In today's connected world, many systems, processes, and services run on one's behalf in the background, often hidden out of site. As we continue to automate our lives and the systems around us, it is useful to know what they are up to. If these systems may be measured in any way then it can be determined if a system is functioning correctly or if it is even functioning at all.
 
-Enter Heartbeat.
+*Enter Heartbeat.*
 
 Heartbeat facilitates monitoring of metrics and generates alerts based on a flexible set of rules. Metrics are received over ordinary HTTP requests to the API and can be anything (pulse, string, number).
 
