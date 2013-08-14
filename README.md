@@ -23,7 +23,7 @@ One needs not think of systems as strictly software running on servers. A system
 
 * Cron jobs and background services
 
-Verify that services are running by receiving alerts when something fails or does not execute. Pulses can be sent whenever a task has finished with a simple ``curl`` call to Heartbeat.
+Verify that services are running by receiving alerts when something fails or does not execute. Pulses can be sent whenever a task has finished with a simple ``curl`` call to Heartbeat. Then an alert may be setup to occur if a job does not finish within an hour, for example.
 
 * Usage metrics
 
