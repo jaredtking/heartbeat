@@ -11,7 +11,7 @@ In today's connected world, many systems, processes, and services run on one's b
 
 Heartbeat facilitates monitoring of metrics and generates alerts based on a flexible set of rules. Metrics are received over ordinary HTTP requests to the API and can be anything (pulse, string, number).
 
-One needs not think of systems as strictly software running on servers. A system may be something in the physical world like a business. If it generates data then it can be monitored by Heartbeat. Please see the use cases for examples of how Heartbeat may be used.
+One needs not think of systems as strictly software running on servers. A system may be something in the physical world, like a business. If it generates data then it can be monitored by Heartbeat. Please see the use cases for examples of how Heartbeat may be used.
 
 ## Goals
 
