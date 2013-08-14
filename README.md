@@ -1,5 +1,4 @@
-heartbeat.js
-=====
+# heartbeat.js [![Build Status](https://travis-ci.org/jaredtking/heartbeat.png?branch=master)](https://travis-ci.org/jaredtking/heartbeat)
 
 Server for monitoring your life
 
@@ -90,7 +89,7 @@ More detail coming soon...
 ## Configuration
 
 Heartbeat has a collection of JSON configuration files that control everything, including rules and alert settings. The available configuration files are:
-```
+```sh
 server.json
 rules.json
 ```
@@ -114,19 +113,19 @@ Heartbeat can be configured to send alerts via SMS if [Twilio](http://twilio.com
 ## Usage
 
 Installation with npm:
-```
+```sh
 sudo npm -g install heartbeat
 ```
 
 Creating a new Heartbeat server with a custom name:
-```
+```sh
 heartbeat new myHeartbeat
 ```
 
 A directory with the server name will be created and filled with sample configuration files. At minimum, the database credentials must be supplied before firing up the server.
 
 The server can be started with:
-```
+```sh
 heartbeat start
 ```
 
