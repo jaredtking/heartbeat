@@ -138,6 +138,8 @@ I have chosen to follow [Readme Driven Development](http://tom.preston-werner.co
 
 ### What's next?
 
+The plan is to build this project in node.js. I believe it is the most fitting tool given the requirements of speed and high concurrency.
+
 - Design REST API
 - Define alert rule parameters
 - Setup tests for prototype functionality (track metrics, simple rule set, e-mail + sms alerts)
