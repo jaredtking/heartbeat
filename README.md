@@ -20,29 +20,29 @@ One needs not think of systems as strictly software running on servers. A system
 
 ## Use cases
 
-* Cron jobs and background services
+### Cron jobs and background services
 
 Verify that services are running by receiving alerts when something fails or does not execute. Pulses can be sent whenever a task has finished with a simple ``curl`` call to Heartbeat. Then an alert may be setup to occur if a job does not finish within an hour, for example.
 
-* Usage metrics
+### Usage metrics
 
 Store data as services are used or consumed. For example, store statistics about how a product or app gets used over time.
 
-* Business
+### Business
 
 Monitor the health of your business with Heartbeat and be notified as soon as dips in traffic, signups, or revenue are detected.
 
 An example for a web app: if no new signups were made in the last 3 days, an alert could be sent.
 
-* Personal
+### Personal
 
 Track metrics about yourself, such as health and productivity.
 
-* Hardware
+### Hardware
 
 With the internet of things it is now possible to communicate with circuits interfacing with real hardware, such as Raspberry Pi, from anywhere with an internet connection. Possibilities include notifications whenever a switch is triggered or a sensor exceeds a threshold.
 
-* Who knows?
+### Who knows?
 
 Almost any information can be tracked and logged. There are many, many other use cases where Heartbeat is useful, waiting to be discovered.
 
