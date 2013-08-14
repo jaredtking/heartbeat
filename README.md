@@ -17,7 +17,7 @@ One needs not think of systems as strictly software running on servers. A system
 
 1. Provide an API for collecting data
 2. Display data using an interactive dashboard
-3. Send alerts (email, sms, push notification) based on defined rules
+3. Send alerts (email, sms, push notification, webhook) based on defined rules
 
 ## Use cases
 
