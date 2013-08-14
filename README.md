@@ -82,9 +82,13 @@ More detail coming soon...
 
 ## HTTP API
 
-Data is supplied to Heartbeat via an HTTP API. Every piece of data that comes in must have the name of a metric and a value. The timestamp assigned to the data will be the time the request comes in.
+Data is supplied to Heartbeat via a RESTful API. Every piece of data that comes in must have the name of a metric and a value. The timestamp assigned to the data will be the time the request comes in.
 
-More detail coming soon...
+### `POST /metrics/:metric`
+
+### `POST /metrics`
+
+Additonal endpoints for retrieving metrics and managing rules will be added later.
 
 ## Configuration
 
