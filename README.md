@@ -33,6 +33,8 @@ Store data as services are used or consumed. For example, store statistics about
 
 Monitor the health of your business with Heartbeat and be notified as soon as dips in traffic, signups, or revenue are detected.
 
+An example for a web app: if no new signups were made in the last 3 days, an alert could be sent.
+
 * Personal
 
 Track metrics about yourself, such as health and productivity.
