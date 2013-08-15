@@ -212,7 +212,7 @@ The plan is to build this project in node.js. I believe it is the most fitting t
 - ~~Define alert rule parameters~~
 - Setup tests for prototype functionality
 	- ~~rule validation~~
-	- rule operators
+	- evaluaton of conditions
 	- rule scheduling
 	- tracking metrics w/ redis
 	- e-mail alerts
