@@ -1,14 +1,14 @@
-var assert = require('assert');
-var _ = require('underscore');
-var Rules = require('../lib/rules');
+var assert = require('assert'),
+	_ = require('underscore'),
+	later = require('later'),
+	Rules = require('../lib/rules');
 
 describe('rules', function() {
 	describe('validateRuleType', function() {
 		it('should return true for valid rule types', function() {
 			var valid = [
 				'trigger',
-				'periodic',
-				'deadline'
+				'schedule'
 			];
 
 			_.each(valid, function(type) {
@@ -155,9 +155,9 @@ describe('rules', function() {
 			}));
 		});
 
-		it('should return true for valid periodic rule', function() {
+		it('should return true for valid schedule rule', function() {
 			assert.ok(Rules.validate({
-				type: 'periodic',
+				type: 'schedule',
 				condition: {
 					op: '>',
 					0: 'servers.dallas.cpu',
@@ -167,28 +167,8 @@ describe('rules', function() {
 					type: 'email',
 					endpoint: 'johnny@appleseed.com'
 				},
-				schedule: {
-					// todo
-				}
+				schedule: later.parse.text('every 5 min')
 			}));
-		});
-
-		it('should return true for valid deadline rule', function() {
-			assert.ok(Rules.validate({
-				type: 'deadline',
-				condition: {
-					op: '>',
-					0: 'servers.dallas.cpu',
-					1: 90
-				},
-				alert: {
-					type: 'email',
-					endpoint: 'johnny@appleseed.com'
-				},
-				schedule: {
-					// todo
-				}
-			}));		
 		});
 
 		it('should return false for invalid rule', function() {
@@ -204,7 +184,7 @@ describe('rules', function() {
 					condition: {}
 				},
 				{
-					type: 'periodic',
+					type: 'schedule',
 					condition: {
 						op: '>',
 						0: 'ok',
@@ -232,20 +212,6 @@ describe('rules', function() {
 			_.each(invalid, function(rule) {
 				assert.ok(!Rules.validate(rule), 'Invalid rule(' + JSON.stringify(rule) + ') passed validation');
 			});
-		});
-	});
-
-	describe('schedule', function() {
-		it('should generate schedule for trigger rule', function() {
-			// todo
-		});
-
-		it('should generate schedule for periodic rule', function() {
-			// todo
-		});
-
-		it('should generate schedule for deadline rule', function() {
-			// todo
 		});
 	});
 });

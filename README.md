@@ -79,25 +79,20 @@ A metric may be any piece of text. If a metric contains at least one string then
 Rules define the criteria for which an alert will be generated.
 
 Each rule consists of:
-- schedule
+- type
 - condition
 - alert
+- schedule
 
-### Schedules
-
-There are 3 types of schedules: trigger, periodic, and deadline.
+There are 2 types of rules: trigger and schedule.
 
 #### Trigger
 
 Trigger rules checks if an alert should be generated every time one of the included metrics has been updated. For example, a trigger can generate an alert once a value reaches a threshold. An even simpler example would be to generate an alert once an alarm generates a pulse.
 
-#### Periodic
+#### Schedule
 
-Periodic rules check for alert conditions on a regular interval. i.e. every hour
-
-#### Deadline (TODO better name)
-
-Deadline rules checks for an alert condition at a specified time.
+Schedule rules check for alert conditions according to a [later](http://bunkat.github.io/later) schedule. Possibilities include checking for a condition every hour, once a week, or on a particular date. A valid later schedule must be supplied to 
 
 ### Condition
 
@@ -119,9 +114,10 @@ The alert specifies where and how an alert should be sent. An alert may contain 
 
 ### Example
 
+Trigger:
 ```js
 rule = {
-	type: 'trigger', // trigger, periodic, or deadline
+	type: 'trigger',
 	condition: { // translates to op(a,b)
 		op: '>'
 		a: 'servers.dallas.cpu'
@@ -130,7 +126,21 @@ rule = {
  	alert: {
  		type: 'email',
  		endpoint: 'johnny@appleseed.com'
- 	}
+ 	},
+ 	schedule: later.parse.text('every 1 hour') // only
+}
+```
+
+Schedule:
+```js
+rule = {
+	type: 'schedule',
+	condition: 'services.database.pulse',
+ 	alert: {
+ 		type: 'sms',
+ 		endpoint: '1234567890'
+ 	},
+ 	schedule: later.parse.text('every 1 hour')
 }
 ```
 
