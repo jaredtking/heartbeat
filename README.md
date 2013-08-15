@@ -81,7 +81,7 @@ Rules define the criteria for which an alert will be generated.
 Each rule consists of:
 - schedule
 - condition
-- 	alert
+- alert
 
 ### Schedules
 
@@ -102,6 +102,10 @@ Deadline rules checks for an alert condition at a specified time.
 ### Condition
 
 These are the condition(s) that trigger an alert. A condition string evaluates into a boolean value. When true, the alert will be fired, otherwise, the no action will be taken.
+
+### Alert
+
+The alert specifies where and how an alert should be sent. An alert may contain one or more endpoints. Initially, e-mail and sms will be supported.
 
 ## HTTP API
 

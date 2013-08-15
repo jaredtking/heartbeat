@@ -15,17 +15,30 @@ describe('rules', function() {
 		});
 
 		it('should return true for valid periodic rule', function() {
-
+			assert.ok(Rules.validate({
+				type: 'periodic',
+				condition: 'condition string',
+				alert: {
+					type: 'email',
+					address: 'test@example.com'
+				}
+			}));
 		});
 
 		it('should return true for valid deadline rule', function() {
-
+			assert.ok(Rules.validate({
+				type: 'deadline',
+				condition: 'condition string',
+				alert: {
+					type: 'email',
+					address: 'test@example.com'
+				}
+			}));
 		});
 
 		it('should return false for invalid rule', function() {
-			assert.fail(Rules.validate({
-				
-			}));
+			assert.ok(!Rules.validate({}));
+			assert.ok(!Rules.validate('is this thing on?'));
 		});
 	});
 
