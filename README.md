@@ -126,8 +126,7 @@ rule = {
  	alert: {
  		type: 'email',
  		endpoint: 'johnny@appleseed.com'
- 	},
- 	schedule: later.parse.text('every 1 hour') // only
+ 	}
 }
 ```
 
