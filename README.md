@@ -137,7 +137,7 @@ rule = {
 	condition: {
 		op: 'not',
 		0: 'services.database.pulse'
-	}
+	},
  	alert: {
  		type: 'sms',
  		endpoint: '1234567890'
