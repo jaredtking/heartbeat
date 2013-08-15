@@ -81,7 +81,7 @@ Rules define the criteria for which an alert will be generated.
 Each rule consists of:
 - schedule
 - condition
-- alert
+- 	alert
 
 ### Schedules
 
@@ -101,7 +101,7 @@ Deadline rules checks for an alert condition at a specified time.
 
 ### Condition
 
-Criteria are the condition(s) which trigger an alert. Ultimately, criteria evaluates into a boolean expression. When true, the alert will be sent, otherwise, the alert will be ignored.
+These are the condition(s) that trigger an alert. A condition string evaluates into a boolean value. When true, the alert will be fired, otherwise, the no action will be taken.
 
 ## HTTP API
 
