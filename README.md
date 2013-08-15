@@ -107,6 +107,23 @@ These are the condition(s) that trigger an alert. A condition string evaluates i
 
 The alert specifies where and how an alert should be sent. An alert may contain one or more endpoints. Initially, e-mail and sms will be supported.
 
+### Example
+
+```js
+rule = {
+	type: 'trigger', // trigger, periodic, or deadline
+	condition: {
+		op: '>'
+		a: 'servers.dallas.cpu'		
+		b: 90
+ 	},
+ 	alert: {
+ 		type: 'email',
+ 		endpoint: 'johnny@appleseed.com'
+ 	}
+}
+```
+
 ## HTTP API
 
 Data is supplied to Heartbeat via a RESTful API. Every piece of data that comes in must have the name of a metric and a value. The timestamp assigned to the data will be the time the request comes in.
