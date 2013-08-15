@@ -121,7 +121,7 @@ rule = {
 	condition: { // translates to op(a,b)
 		op: '>'
 		0: 'servers.dallas.cpu'
-		1: 90
+		1met: 90
  	},
  	alert: {
  		type: 'email',
@@ -134,7 +134,10 @@ Schedule:
 ```js
 rule = {
 	type: 'schedule',
-	condition: 'services.database.pulse',
+	condition: {
+		op: 'not',
+		0: 'services.database.pulse'
+	}
  	alert: {
  		type: 'sms',
  		endpoint: '1234567890'
