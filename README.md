@@ -48,7 +48,7 @@ Almost any information can be tracked and logged. There are many, many other use
 
 ## Metrics
 
-At the core of heartbeat is the tracking of various metrics. Metrics need not be explicitly defined. Instead, as data comes in, metrics will be created as need be.
+At the core of heartbeat is the tracking of various metrics. Metrics need not be explicitly defined. Instead, as data comes in, metrics will be created on the fly.
 
 ### Nomenclature
 
@@ -79,9 +79,9 @@ A metric may be any piece of text. If a metric contains at least one string then
 Rules define the criteria for which an alert will be generated.
 
 Each rule consists of:
-schedule
-condition
-alert
+- schedule
+- condition
+- alert
 
 ### Schedules
 
