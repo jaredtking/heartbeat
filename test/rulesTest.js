@@ -98,7 +98,30 @@ describe('rules', function() {
 	});
 
 	describe('validateSchedule', function() {
-		// todo
+		it('should return true for valid schedules', function() {
+			var valid = [
+				later.parse.text('every 5 minutes'),
+				{h: [10], m: [15,45]}
+			];
+
+			_.each(valid, function(schedule) {
+				assert.ok(Rules.validateSchedule(schedule), 'Valid schedule(' + JSON.stringify(schedule) + ') failed validation');
+			});
+		});
+
+		it('should return false for invalid schedules', function() {
+			var invalid = [
+				'fail',
+				'',
+				{},
+				[],
+				undefined
+			];
+
+			_.each(invalid, function(schedule) {
+				assert.ok(!Rules.validateSchedule(schedule), 'Invalid schedule(' + JSON.stringify(schedule) + ') passed validation');
+			});
+		});
 	});
 
 	describe('validateAlert', function() {
