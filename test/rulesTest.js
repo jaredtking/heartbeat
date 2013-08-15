@@ -20,9 +20,8 @@ describe('rules', function() {
 		it('should return false for invalid rule types', function() {
 			var invalid = [
 				{},
-				'fail',
-				'blah',
-				''
+				'',
+				'fail'
 			];
 
 			_.each(invalid, function(type) {
@@ -241,7 +240,32 @@ describe('rules', function() {
 	});
 
 	describe('conditionMetricNames', function() {
-		// todo
+
+		it('should evaluate to metric names', function() {
+			var cond = {
+				op: 'and',
+				0: {
+					op: '>',
+					0: 'somemetric',
+					1: 123
+				},
+				1: {
+					op: 'or',
+					0: {
+						op: '<',
+						0: 'anothermetric',
+						1: 1234
+					},
+					1: {
+						op: '>',
+						0: 'lastmetric',
+						1: 12345
+					}
+				}
+			};
+			
+			assert.deepEqual(Rules.conditionMetricNames(cond), ['somemetric','anothermetric','lastmetric']);
+		});
 	});
 
 	describe('evaluateCondition', function() {

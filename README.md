@@ -120,8 +120,8 @@ rule = {
 	type: 'trigger',
 	condition: { // translates to op(a,b)
 		op: '>'
-		a: 'servers.dallas.cpu'
-		b: 90
+		0: 'servers.dallas.cpu'
+		1: 90
  	},
  	alert: {
  		type: 'email',
