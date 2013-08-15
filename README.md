@@ -209,11 +209,18 @@ I have chosen to follow [Readme Driven Development](http://tom.preston-werner.co
 The plan is to build this project in node.js. I believe it is the most fitting tool given the requirements of speed and high concurrency.
 
 - Design REST API
-- Define alert rule parameters
-- Setup tests for prototype functionality (track metrics, simple rule set, e-mail + sms alerts)
+- ~~Define alert rule parameters~~
+- Setup tests for prototype functionality
+	- ~~rule validation~~
+	- rule scheduling
+	- tracking metrics w/ redis
+	- e-mail alerts
+	- sms alerts
 - CLI interface
-- Configuration files (create and parse)
-- Scheduler based on rules
+- Configuration files
+	- server.json
+	- rules.json
+- Rule scheduler
 - Build API endpoints for receiving data
 - Send alerts
 - Web app dashboard
