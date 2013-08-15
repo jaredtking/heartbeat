@@ -103,6 +103,16 @@ Deadline rules checks for an alert condition at a specified time.
 
 These are the condition(s) that trigger an alert. A condition string evaluates into a boolean value. When true, the alert will be fired, otherwise, the no action will be taken.
 
+#### Operators
+
+Conditions contain at least one operator. Every operator generates a boolean, true or false, and may take any number of arguments depending on the operator. For example, the `>` operator takes two arguments, a left and right side. Arguments are named according to 
+
+#### Nesting
+
+Nesting can be achieved by using building a tree of boolean operators.
+
+Currently, conditions are defined as nested objects for simplicity.
+
 ### Alert
 
 The alert specifies where and how an alert should be sent. An alert may contain one or more endpoints. Initially, e-mail and sms will be supported.
@@ -112,9 +122,9 @@ The alert specifies where and how an alert should be sent. An alert may contain 
 ```js
 rule = {
 	type: 'trigger', // trigger, periodic, or deadline
-	condition: {
+	condition: { // translates to op(a,b)
 		op: '>'
-		a: 'servers.dallas.cpu'		
+		a: 'servers.dallas.cpu'
 		b: 90
  	},
  	alert: {
