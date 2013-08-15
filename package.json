@@ -10,7 +10,8 @@
     "url": "https://github.com/jaredtking/heartbeat.git"
   },
   "dependencies": {
-    "underscore": "1.5.1"
+    "underscore": "1.5.1",
+    "validator": "1.4.0"
   },
   "devDependencies": {
   	"mocha": "1.12.0"
