@@ -1,7 +1,8 @@
 var assert = require('assert'),
 	_ = require('underscore'),
 	later = require('later'),
-	Rules = require('../lib/rules');
+	Rules = require('../lib/rules'),
+	Metrics = require('../lib/metrics');
 
 describe('rules', function() {
 	describe('validateRuleType', function() {
@@ -229,12 +230,50 @@ describe('rules', function() {
 						type: 'sms',
 						endpoint: 'fail'
 					}
-				}
+				},
+				[]
 			];
 
 			_.each(invalid, function(rule) {
 				assert.ok(!Rules.validate(rule), 'Invalid rule(' + JSON.stringify(rule) + ') passed validation');
 			});
+		});
+	});
+
+	describe('conditionMetricNames', function() {
+		// todo
+	});
+
+	describe('evaluateCondition', function() {
+		var testCases = {
+			'>': {
+				pass: [[1,0]],
+				fail: [[0,1],[1,1]]
+			}
+		};
+
+		var evaluator = new Metrics.evaluator();
+
+		_.each(testCases, function(value, op, list) {
+			// pass cases
+			_.each(value.pass, function(args, index, list2) {
+				it('should return true for ' + op + ' operator with arguments ' + args, function() {
+					// build the condition
+					var condition = { op: op };
+
+					for (var i in args)
+						condition[i] = args[i];
+
+					assert.ok(Rules.evaluateCondition(condition, evaluator));
+				});
+			});
+
+			// fail cases
+
+		});
+
+		describe('nested', function() {
+			// todo
 		});
 	});
 });
