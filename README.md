@@ -78,7 +78,30 @@ A metric may be any piece of text. If a metric contains at least one string then
 
 Rules define the criteria for which an alert will be generated.
 
-More detail coming soon...
+Each rule consists of:
+schedule
+condition
+alert
+
+### Schedules
+
+There are 3 types of schedules: trigger, periodic, and deadline.
+
+#### Trigger
+
+Trigger rules checks if an alert should be generated every time one of the included metrics has been updated. For example, a trigger can generate an alert once a value reaches a threshold. An even simpler example would be to generate an alert once an alarm generates a pulse.
+
+#### Periodic
+
+Periodic rules check for alert conditions on a regular interval. i.e. every hour
+
+#### Deadline (TODO better name)
+
+Deadline rules checks for an alert condition at a specified time.
+
+### Condition
+
+Criteria are the condition(s) which trigger an alert. Ultimately, criteria evaluates into a boolean expression. When true, the alert will be sent, otherwise, the alert will be ignored.
 
 ## HTTP API
 
