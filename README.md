@@ -1,8 +1,6 @@
 # heartbeat.js [![Build Status](https://travis-ci.org/jaredtking/heartbeat.png?branch=master)](https://travis-ci.org/jaredtking/heartbeat)
 
-Server for monitoring your life
-
-## Introduction
+### Server for monitoring your life
 
 In today's connected world, many systems, processes, and services run on one's behalf in the background, often hidden out of site. As we continue to automate our lives and the systems around us, it is useful to know what they are up to. If these systems may be measured in any way then it can be determined if a system is functioning correctly or if it is even functioning at all.
 
@@ -34,13 +32,13 @@ Monitor the health of your business with Heartbeat and be notified as soon as di
 
 An example for a web app: if no new signups were made in the last 3 days, an alert could be sent.
 
+### Hardware
+
+With the internet of things it is now possible to communicate with circuits interfacing with real hardware, such as [Raspberry Pi](http://www.raspberrypi.org/). Possibilities include generating alerts whenever a switch is triggered or a sensor exceeds a threshold.
+
 ### Personal
 
 Track metrics about yourself, such as health and productivity.
-
-### Hardware
-
-With the internet of things it is now possible to communicate with circuits interfacing with real hardware, such as Raspberry Pi, from anywhere with an internet connection. Possibilities include notifications whenever a switch is triggered or a sensor exceeds a threshold.
 
 ### Who knows?
 
