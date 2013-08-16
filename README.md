@@ -223,9 +223,9 @@ The plan is to build this project in node.js. I believe it is the most fitting t
 	- rules.json
 - Build API endpoints for receiving data
 - CLI interface
-	- new
-	- start
-	- stop
+	- `heartbeat new`
+	- `heartbeat start`
+	- `heartbeat stop`
 - Web app dashboard
 
 ## License
