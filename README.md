@@ -211,20 +211,21 @@ The plan is to build this project in node.js. I believe it is the most fitting t
 
 - Design REST API
 - ~~Define alert rule parameters~~
-- Setup tests for prototype functionality
+- Setup code w/ tests for prototype functionality
 	- ~~rule validation~~
 	- ~~evaluaton of conditions~~
 	- rule scheduling
 	- tracking metrics w/ redis
 	- e-mail alerts
 	- sms alerts
-- CLI interface
 - Configuration files
 	- server.json
 	- rules.json
-- Load rules into scheduler
 - Build API endpoints for receiving data
-- Send alerts
+- CLI interface
+	- new
+	- start
+	- stop
 - Web app dashboard
 
 ## License
