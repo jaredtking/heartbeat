@@ -1,9 +1,13 @@
 var assert = require('assert'),
 	_ = require('underscore'),
 	condition = require('../lib/condition'),
-	Metrics = require('../lib/metrics');
+	metrics = require('../lib/metrics');
 
 describe('conditions', function() {
+
+	// metrics storage provider
+	var storage = metrics.storage();
+
 	describe('isValid', function() {
 		it('should return true for valid condition', function() {
 			var valid = [
@@ -144,8 +148,6 @@ describe('conditions', function() {
 			}
 		};
 
-		var evaluator = new Metrics.evaluator();
-
 		_.each(testCases, function(value, op, list) {
 			// pass cases
 			_.each(value.pass, function(args, index, list2) {
@@ -156,7 +158,7 @@ describe('conditions', function() {
 					for (var i in args)
 						c[i] = args[i];
 
-					assert.ok(condition(c).evaluate(evaluator));
+					assert.ok(condition(c).evaluate(storage));
 				});
 			});
 
@@ -169,7 +171,7 @@ describe('conditions', function() {
 					for (var i in args)
 						c[i] = args[i];
 
-					assert.ok(!condition(c).evaluate(evaluator));
+					assert.ok(!condition(c).evaluate(storage));
 				});
 			});
 		});
@@ -197,10 +199,8 @@ describe('conditions', function() {
 				}
 			};
 
-			var evaluator = new Metrics.evaluator();
-
 			it('should return true for nested condition', function() {
-				assert.ok(condition(c).evaluate(evaluator));
+				assert.ok(condition(c).evaluate(storage));
 			});
 		});
 	});

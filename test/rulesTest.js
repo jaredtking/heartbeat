@@ -1,8 +1,7 @@
 var assert = require('assert'),
 	_ = require('underscore'),
 	later = require('later'),
-	Rules = require('../lib/rules'),
-	Metrics = require('../lib/metrics');
+	Rules = require('../lib/rules');
 
 describe('rules', function() {
 	describe('validateRuleType', function() {
