@@ -29,24 +29,31 @@ describe('scheduler', function() {
 	describe('start', function() {
 
 		it('should start and execute each rule once', function(done) {
-
 			this.timeout(15000);
 
-			var i = 0;
+			var scheduleFired = false,
+				triggerFired = false;
 
-			schedule.start(function() {
-				i++;
+			schedule.start(function(rule) {
+				
+				//console.log('rule fired ' + JSON.stringify(rule));
 
-				if (i >= rules.length) {
+				if (rule.type == 'schedule')
+					scheduleFired = true;
+
+				if (rule.type == 'trigger')
+					triggerFired = true;
+
+				if (scheduleFired && triggerFired) {
 					schedule.stop();
 
 					done();
 				}
 			});
-		});
 
-		// fire triggers
-		schedule.fireTriggers('anything.goes');
+			// fire triggers
+			schedule.fireTriggers('anything.goes');
+		});
 	});
 
 	describe('stop', function() {
@@ -62,8 +69,8 @@ describe('scheduler', function() {
 
 			assert.ok(!schedule.stats().running);
 
-			// wait for 5s to be sure
-			setTimeout(done, 5000);
+			// wait for 4s to be sure
+			setTimeout(done, 4000);
 		});
 	});
 

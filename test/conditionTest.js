@@ -73,6 +73,10 @@ describe('conditions', function() {
 
 	describe('metricNames', function() {
 
+		it('should evaluate to a single metric name', function() {
+			assert.deepEqual(condition('test.metric').metricNames(), ['test.metric']);
+		});
+
 		it('should evaluate to metric names', function() {
 			var c = {
 				op: 'and',
