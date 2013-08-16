@@ -35,7 +35,7 @@ describe('scheduler', function() {
 				triggerFired = false;
 
 			schedule.start(function(rule) {
-				
+
 				//console.log('rule fired ' + JSON.stringify(rule));
 
 				if (rule.type == 'schedule')
@@ -83,10 +83,59 @@ describe('scheduler', function() {
 	});
 
 	describe('addRule', function() {
-		// todo
+		if('should add 1 rule and skip 1 duplicate', function() {
+			// add duplicate rule
+			schedule.addRule({
+				type: 'trigger',
+				condition: 'anything.goes',
+				alert: {
+					type: 'email',
+					endpoint: 'test@example.com'
+				}
+			})
+
+			// add unique rule
+			schedule.addRule({
+				type: 'trigger',
+				condition: 'new.rule',
+				alert: {
+					type: 'email',
+					endpoint: 'test@example.com'
+				}
+			})
+
+			// check stats
+			var stats = schedule.stats();
+
+			assert.equal(stats.rules, 3);
+			assert.equal(stats.triggers, 2);
+			assert.equal(stats.schedules, 2);
+		});
 	});
 
 	describe('fireTriggers', function() {
-		// todo
+		it('should fire the trigger callback', function(done) {
+			// new schedule
+			var schedule2 = scheduler.schedule([{
+				type: 'trigger',
+				condition: 'meh',
+				alert: {
+					type: 'email',
+					endpoint: 'test@example.com'
+				}
+			}]);
+
+			// test callback
+			schedule2.start(function(rule) {
+				if (rule.type == 'trigger')
+					done();
+			});
+
+			// fire
+			schedule2.fireTriggers('meh');
+
+			// quite
+			schedule2.stop();
+		});
 	});
 });

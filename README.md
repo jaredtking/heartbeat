@@ -214,7 +214,7 @@ The plan is to build this project in node.js. I believe it is the most fitting t
 - Setup code w/ tests for prototype functionality
 	- ~~rule validation~~
 	- ~~evaluaton of conditions~~
-	- rule scheduling
+	- ~~rule scheduling~~
 	- store/fetch metrics w/ redis
 	- e-mail alerts
 	- sms alerts
