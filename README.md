@@ -170,13 +170,13 @@ The credentials for redis must be supplied in ``server.json``.
 
 ### Alert Settings
 
-#### SMTP
+#### E-mail (SMTP)
 
-Alerts may be sent over e-mail with SMTP credentials. The SMTP settings may be set in ``server.json``.
+Alerts may be sent over e-mail with SMTP credentials. The SMTP settings are located in ``server.json``.
 
-#### Twilio
+#### SMS (Twilio)
 
-Heartbeat can be configured to send alerts via SMS if [Twilio](http://twilio.com) credentials are supplied in ``server.json``.
+Heartbeat can send alerts via SMS if [Twilio](http://twilio.com) credentials are supplied in ``server.json``.
 
 ## Usage
 
