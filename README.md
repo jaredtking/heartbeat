@@ -98,7 +98,18 @@ These are the condition(s) that trigger an alert. A condition string evaluates i
 
 #### Operators
 
-Conditions contain at least one operator. Every operator generates a boolean, true or false, and may take any number of arguments depending on the operator. For example, the `>` operator takes two arguments, a left and right side. Arguments are named according to 
+Conditions contain at least one operator. Every operator generates a boolean, true or false, and may take any number of arguments depending on the operator. For example, the `>` operator takes two arguments, a left and right side.
+
+Available operators:
+- `>`
+- `<`
+- `>=`
+- `<=`
+- `=`
+- `<>` - not equal
+- `not`
+- `or`
+- `and`
 
 #### Nesting
 
