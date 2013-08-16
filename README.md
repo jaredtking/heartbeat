@@ -164,7 +164,7 @@ rules.json
 
 ### Database
 
-Heartbeat relies on [redis](http://redis.io) as a data store. It is required that redis has persistence enabled.
+Heartbeat relies on [redis](http://redis.io) as a data store. It is required that redis has persistence enabled for Heartbeat to function properly.
 
 The credentials for redis must be supplied in ``server.json``.
 
