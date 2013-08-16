@@ -215,7 +215,7 @@ The plan is to build this project in node.js. I believe it is the most fitting t
 	- ~~rule validation~~
 	- ~~evaluaton of conditions~~
 	- rule scheduling
-	- tracking metrics w/ redis
+	- store/fetch metrics w/ redis
 	- e-mail alerts
 	- sms alerts
 - Configuration files
