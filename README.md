@@ -222,7 +222,7 @@ The plan is to build this project in node.js. I believe it is the most fitting t
 - Configuration files
 	- server.json
 	- rules.json
-- Rule scheduler
+- Load rules into scheduler
 - Build API endpoints for receiving data
 - Send alerts
 - Web app dashboard
