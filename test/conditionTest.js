@@ -1,6 +1,6 @@
 var assert = require('assert'),
 	_ = require('underscore'),
-	Condition = require('../lib/condition'),
+	condition = require('../lib/condition'),
 	Metrics = require('../lib/metrics');
 
 describe('conditions', function() {
@@ -50,8 +50,7 @@ describe('conditions', function() {
 			];
 
 			_.each(valid, function(c) {
-				var cond = new Condition(c);
-				assert.ok(cond.isValid(), 'Valid condition(' + JSON.stringify(c) + ') failed validation');
+				assert.ok(condition(c).isValid(), 'Valid condition(' + JSON.stringify(c) + ') failed validation');
 			});
 		});
 
@@ -67,8 +66,7 @@ describe('conditions', function() {
 			];
 
 			_.each(invalid, function(c) {
-				var cond = new Condition(c);
-				assert.ok(!cond.isValid(), 'Invalid condition(' + JSON.stringify(c) + ') passed validation');
+				assert.ok(!condition(c).isValid(), 'Invalid condition(' + JSON.stringify(c) + ') passed validation');
 			});
 		});
 	});
@@ -98,8 +96,7 @@ describe('conditions', function() {
 				}
 			};
 
-			var cond = new Condition(c);
-			assert.deepEqual(cond.metricNames(), ['somemetric','anothermetric','lastmetric']);
+			assert.deepEqual(condition(c).metricNames(), ['somemetric','anothermetric','lastmetric']);
 		});
 	});
 
@@ -155,8 +152,7 @@ describe('conditions', function() {
 					for (var i in args)
 						c[i] = args[i];
 
-					var cond = new Condition(c);
-					assert.ok(cond.evaluate(evaluator));
+					assert.ok(condition(c).evaluate(evaluator));
 				});
 			});
 
@@ -169,8 +165,7 @@ describe('conditions', function() {
 					for (var i in args)
 						c[i] = args[i];
 
-					var cond = new Condition(c);
-					assert.ok(!cond.evaluate(evaluator));
+					assert.ok(!condition(c).evaluate(evaluator));
 				});
 			});
 		});
@@ -200,9 +195,8 @@ describe('conditions', function() {
 
 			var evaluator = new Metrics.evaluator();
 
-			var cond = new Condition(c);
 			it('should return true for nested condition', function() {
-				assert.ok(cond.evaluate(evaluator));
+				assert.ok(condition(c).evaluate(evaluator));
 			});
 		});
 	});
