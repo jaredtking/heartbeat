@@ -111,6 +111,10 @@ Available operators:
 - `or`
 - `and`
 
+##### Arguments
+
+Arguments can be another operator (please see example below), the name of a metric, or a constant. The name of a metric is simply a string. A constant may be a string, number or boolean value. In order to use a string as a constant, you must prefix a `#` to the string, like the example below.
+
 #### Nesting
 
 Nesting can be achieved by using building a tree of boolean operators.
@@ -119,7 +123,7 @@ Currently, conditions are defined as nested objects for simplicity.
 
 ### Alert
 
-The alert specifies where and how an alert should be sent. An alert may contain one or more endpoints. Initially, e-mail and sms will be supported.
+The alert specifies where and how an alert should be sent. An alert may contain one or more endpoints with an array of endpoints. Initially, e-mail and sms will be supported.
 
 ### Example
 
@@ -147,11 +151,47 @@ rule = {
 		op: 'not',
 		0: 'services.database.pulse'
 	},
- 	alert: {
+ 	alert: [
+	 	{
+	 		type: 'sms',
+	 		endpoint: '1234567890'
+	 	},
+	 	{
+	 		type: 'sms',
+	 		endpoint: '0987654321'
+	 	}
+	],
+ 	schedule: later.parse.text('every 1 hour')
+}
+```
+
+Nesting:
+```js
+rule = {
+	type: 'trigger',
+	condition: {
+		op: 'or',
+		0: {
+			op: '=',
+			0: 'error',
+			1: '#The server is down.'
+		},
+		1: {
+			op: '=',
+			0: 'error',
+			1: '#I have given up.'
+		},
+		2: {
+			op: '',
+			0: 'error',
+			1: '#You sunk my battleship.'
+		}
+	},
+ 	alert:
+ 	{
  		type: 'sms',
  		endpoint: '1234567890'
- 	},
- 	schedule: later.parse.text('every 1 hour')
+ 	}
 }
 ```
 

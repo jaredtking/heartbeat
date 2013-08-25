@@ -60,7 +60,6 @@ describe('conditions', function() {
 
 		it('should return false for invalid condition', function() {
 			var invalid = [
-				'this should always fail',
 				{},
 				{ op: 'FAIL' },
 				{
@@ -127,12 +126,12 @@ describe('conditions', function() {
 				fail: [[1,0]]
 			},
 			'=': {
-				pass: [[1,1],['equality','equality']],
-				fail: [[0,1],[1,0],['blah','meh']]
+				pass: [[1,1],['#equality','#equality']],
+				fail: [[0,1],[1,0],['#blah','#meh']]
 			},
 			'<>': {
-				pass: [[1,0],[0,1],['meh','blah']],
-				fail: [[1,1],['meh','meh']]
+				pass: [[1,0],[0,1],['#meh','#blah']],
+				fail: [[1,1],['#meh','#meh']]
 			},
 			'not': {
 				pass: [[false]],
