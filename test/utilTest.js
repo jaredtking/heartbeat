@@ -39,7 +39,7 @@ describe('util', function() {
 
 	describe('timestamp', function() {
 		it('should return correct unix timestamp for date', function() {
-			assert.equal(1377147600, Util.timestamp(new Date(2013, 7, 22)));
+			assert.equal(1377147600, Util.timestamp(new Date.UTC(2013, 7, 22)));
 		});
 
 		it('should return rounded unix timestamp for date', function() {
