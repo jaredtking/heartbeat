@@ -1,30 +1,24 @@
 # heartbeat.js [![Build Status](https://travis-ci.org/jaredtking/heartbeat.png?branch=master)](https://travis-ci.org/jaredtking/heartbeat)
 
-### Server for monitoring your life
+### Server for monitoring your ElasticSearch
 
 In today's connected world, many systems, processes, and services run on one's behalf in the background, often hidden out of site. As we continue to automate our lives and the systems around us, it is useful to know what they are up to. If these systems may be measured in any way then it can be determined if a system is functioning correctly or if it is even functioning at all.
 
 *Enter Heartbeat.*
 
-Heartbeat facilitates monitoring of metrics and generates alerts based on a flexible set of rules. Metrics are received over ordinary HTTP requests to the API and can be anything (pulse, string, number).
+Heartbeat facilitates monitoring of metrics and generates alerts based on a flexible set of rules. Metrics are [ElasticSearch](http://www.elasticsearch.org/) queries.
 
-One needs not think of systems as strictly software running on servers. A system may be something in the physical world, like a business. If it generates data then it can be monitored by Heartbeat. Please see the use cases for examples of how Heartbeat may be used.
+One needs not think of systems as strictly software running on servers. A system may be something in the physical world, like a business. If it generates data that can be stored in Elasticsearch then it can be monitored by Heartbeat. Please see the use cases for examples of how Heartbeat may be used.
 
-## Goals
+## Goal
 
-1. Provide an API for collecting data
-2. Display data using an interactive dashboard
-3. Send alerts (email, sms, push notification, webhook) based on defined rules
+Send alerts (email, sms, push notification, webhook) based on scheduled rules.
 
 ## Use cases
 
 ### Cron jobs and background services
 
-Verify that services are running by receiving alerts when something fails or does not execute. Pulses can be sent whenever a task has finished with a simple ``curl`` call to Heartbeat. Then an alert may be setup to occur if a job does not finish within an hour, for example.
-
-### Usage metrics
-
-Store data as services are used or consumed. For example, store statistics about how a product or app gets used over time.
+Verify that services are running by receiving alerts when something fails or does not execute. For example, if ElasticSearch knows when jobs have been ran then an alert may be setup to occur if a job has not successfully finished within the last hour.
 
 ### Business
 
@@ -40,57 +34,34 @@ With the internet of things it is now possible to communicate with circuits inte
 
 Track metrics about yourself, such as health and productivity.
 
+### Real-time Streams
+
+ElasticSearch can have data firehosed in from real-time sources, like Twitter. Alerts could be setup based on custom queries.
+
 ### Who knows?
 
-Almost any information can be tracked and logged. There are many, many other use cases where Heartbeat is useful, waiting to be discovered.
+Almost any type of information can be pumped into ElasticSearch. Heartbeat will be there to alert you what is happening with your data.
 
 ## Metrics
 
-At the core of heartbeat is the tracking of various metrics. Metrics need not be explicitly defined. Instead, as data comes in, metrics will be created on the fly.
+At the core of heartbeat is the tracking of various metrics. Metrics are defined as ElasticSearch queries.
 
 ### Nomenclature
 
 Metrics are denoted with dot notation. Each dot delimits another category. For example, ``servers.dallas.cpu`` references the metric ``cpu`` which is in the ``dallas`` category which is in the ``servers`` category. There are no limits to how deep metrics may be nested.
 
-### Timestamps
+### TODO
 
-Every piece of data that comes is assigned a timestamp according to the time it was received by the API.
-
-### Data Types
-
-Data for a metric can be anything: a number, a string, or simply a pulse. Send any piece of data to Heartbeat and it will handle it.
-
-#### Pulse
-
-At the minimum, a metric may be a pulse, that is, a check in at a point of time.
-
-#### Number
-
-Self-explanatory.
-
-#### String
-
-A metric may be any piece of text. If a metric contains at least one string then it's data will be displayed as a log instead of a graph in the dashboard.
+Specify how metrics are defined.
 
 ## Alert Rules
 
 Rules define the criteria for which an alert will be generated.
 
 Each rule consists of:
-- type
 - condition
 - alert
 - schedule
-
-There are 2 types of rules: trigger and schedule.
-
-#### Trigger
-
-Trigger rules checks if an alert should be generated every time one of the included metrics has been updated. For example, a trigger can generate an alert once a value reaches a threshold. An even simpler example would be to generate an alert once an alarm generates a pulse.
-
-#### Schedule
-
-Schedule rules check for alert conditions according to a [later](http://bunkat.github.io/later) schedule. Possibilities include checking for a condition every hour, once a week, or on a particular date. A valid later schedule must be supplied to 
 
 ### Condition
 
@@ -120,6 +91,10 @@ Arguments can be another operator (please see example below), the name of a metr
 Nesting can be achieved by using building a tree of boolean operators.
 
 Currently, conditions are defined as nested objects for simplicity.
+
+### Schedule
+
+Schedule rules check for alert conditions according to a [later](http://bunkat.github.io/later) schedule. Possibilities include checking for a condition every hour, once a week, or on a particular date. A valid later schedule must be supplied to 
 
 ### Alert
 
@@ -195,16 +170,6 @@ rule = {
 }
 ```
 
-## HTTP API
-
-Data is supplied to Heartbeat via a RESTful API. Every piece of data that comes in must have the name of a metric and a value. The timestamp assigned to the data will be the time the request comes in.
-
-### `POST /metrics/:metric`
-
-### `POST /metrics`
-
-Additonal endpoints for retrieving metrics and managing rules will be added later.
-
 ## Configuration
 
 Heartbeat has a collection of JSON configuration files that control everything, including rules and alert settings. The available configuration files are:
@@ -212,12 +177,6 @@ Heartbeat has a collection of JSON configuration files that control everything, 
 server.json
 rules.json
 ```
-
-### Database
-
-Heartbeat relies on [redis](http://redis.io) as a data store. It is required that redis has persistence enabled for Heartbeat to function properly.
-
-The credentials for redis must be supplied in ``server.json``.
 
 ### Alert Settings
 
@@ -258,26 +217,22 @@ I have chosen to follow [Readme Driven Development](http://tom.preston-werner.co
 
 ### What's next?
 
-The plan is to build this project in node.js. I believe it is the most fitting tool given the requirements of speed and high concurrency.
+The plan is to build this project in node.js. I believe it is the most fitting tool given how awesome it is at event handling and concurrency.
 
-- Design REST API
 - ~~Define alert rule parameters~~
 - Setup code w/ tests for prototype functionality
 	- ~~rule validation~~
-	- ~~evaluaton of conditions~~
 	- ~~rule scheduling~~
-	- store/fetch metrics w/ redis
+	- metrics to elastic search query mapping
 	- e-mail alerts
 	- sms alerts
 - Configuration files
 	- server.json
 	- rules.json
-- Build API endpoints for receiving data
 - CLI interface
 	- `heartbeat new`
 	- `heartbeat start`
 	- `heartbeat stop`
-- Web app dashboard
 
 ## License
 
