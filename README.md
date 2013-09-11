@@ -1,12 +1,12 @@
 # heartbeat.js [![Build Status](https://travis-ci.org/jaredtking/heartbeat.png?branch=master)](https://travis-ci.org/jaredtking/heartbeat)
 
-### Server for monitoring your ElasticSearch
+### Alerts for ElasticSearch
 
-In today's connected world, many systems, processes, and services run on one's behalf in the background, often hidden out of site. As we continue to automate our lives and the systems around us, it is useful to know what they are up to. If these systems may be measured in any way then it can be determined if a system is functioning correctly or if it is even functioning at all.
+In today's connected world, many systems, processes, and services run on one's behalf in the background, often hidden out of sight. As we continue to automate our lives and the systems around us, it is useful to know what they are up to. If these systems may be measured in any way then it can be determined if a system is functioning correctly or if it is even functioning at all.
 
 *Enter Heartbeat.*
 
-Heartbeat facilitates monitoring of metrics and generates alerts based on a flexible set of rules. Metrics are [ElasticSearch](http://www.elasticsearch.org/) queries.
+Heartbeat facilitates monitoring of metrics and generates alerts based on a flexible set of rules. Metrics are just [ElasticSearch](http://www.elasticsearch.org/) queries.
 
 One needs not think of systems as strictly software running on servers. A system may be something in the physical world, like a business. If it generates data that can be stored in Elasticsearch then it can be monitored by Heartbeat. Please see the use cases for examples of how Heartbeat may be used.
 
@@ -105,12 +105,12 @@ The alert specifies where and how an alert should be sent. An alert may contain 
 Trigger:
 ```js
 rule = {
-	type: 'trigger',
 	condition: { // translates to op(a,b)
 		op: '>'
 		0: 'servers.dallas.cpu'
 		1: 90
  	},
+ 	schedule: later.parse.text('every minute'),
  	alert: {
  		type: 'email',
  		endpoint: 'johnny@appleseed.com'
@@ -121,11 +121,11 @@ rule = {
 Schedule:
 ```js
 rule = {
-	type: 'schedule',
 	condition: {
 		op: 'not',
 		0: 'services.database.pulse'
 	},
+	schedule: later.parse.text('every 1 hour'),
  	alert: [
 	 	{
 	 		type: 'sms',
@@ -135,15 +135,13 @@ rule = {
 	 		type: 'sms',
 	 		endpoint: '0987654321'
 	 	}
-	],
- 	schedule: later.parse.text('every 1 hour')
+	]
 }
 ```
 
 Nesting:
 ```js
 rule = {
-	type: 'trigger',
 	condition: {
 		op: 'or',
 		0: {
@@ -162,6 +160,7 @@ rule = {
 			1: '#You sunk my battleship.'
 		}
 	},
+	schedule: later.parse.text('every 30 seconds')
  	alert:
  	{
  		type: 'sms',
